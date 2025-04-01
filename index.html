@@ -1,1 +1,133 @@
+<!DOCTYPE html>
+<!-- The lang attribute will be updated by JavaScript -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Title will be set by JS -->
+    <title id="page-title">Українські пташки - Radiance Games Studio</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Add defer to ensure HTML is parsed before script runs -->
+    <script src="script.js" defer></script>
+</head>
+<body>
 
+    <!-- Header Section -->
+    <header class="site-header">
+        <nav class="main-nav">
+            <a href="index.html" class="logo">
+                <!-- Studio name might not need translation if it's a proper name -->
+                Radiance Games Studio
+            </a>
+            <ul>
+                <li><a href="index.html" id="nav-home">Home</a></li>
+                <li><a href="#game-details" id="nav-game-info">Game Info</a></li>
+                <li><a href="#showcase-gameplay" id="nav-gameplay">Gameplay</a></li>
+                <li><a href="#about-us" id="nav-about">About</a></li>
+                <li><a href="#contact" id="nav-contact">Contact</a></li>
+            </ul>
+            <!-- Language Switcher -->
+            <div id="lang-switcher">
+                <button type="button" class="lang-button" data-lang="en">EN</button>
+                <button type="button" class="lang-button" data-lang="uk">UK</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1 id="hero-title">Українські пташки</h1>
+            <p class="tagline" id="hero-tagline">Take flight in an action-packed side-scroller supporting Ukraine's defenders!</p>
+            <div class="hero-cta">
+                <a href="https://play.google.com/store/apps/details?id=org.radiance.ukrgame" target="_blank" rel="noopener noreferrer" class="cta-button primary" id="cta-google-play">
+                    Download on Google Play
+                </a>
+                <a href="#game-details" class="cta-button secondary" id="cta-learn-more">
+                    Learn More
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content Area -->
+    <main>
+
+        <!-- Game Spotlight Section -->
+        <section id="game-details" class="content-section game-spotlight">
+            <h2 id="spotlight-title">Spotlight: Українські пташки</h2>
+            <div class="section-content">
+                <img src="ukrbirds_screenshots/1.png" alt="Ukrainian Birds gameplay: Stork flying over green hills and pig-like enemies." class="game-image" id="spotlight-img1">
+                <div>
+                    <p id="spotlight-p1">Control a heroic bird navigating treacherous skies and landscapes inspired by Ukraine. Engage in fast-paced, side-scrolling action as you eliminate waves of ground and air targets representing invaders.</p>
+                    <p id="spotlight-p2">Collect coins scattered through the levels to upgrade your arsenal in the shop, grab hearts to stay in the fight longer, and show your support for Ukraine's resilience and spirit!</p>
+                    <a href="https://play.google.com/store/apps/details?id=org.radiance.ukrgame" target="_blank" rel="noopener noreferrer" class="cta-button primary inline-button" id="spotlight-cta">
+                        Get it on Google Play
+                    </a>
+                    <img src="ukrbirds_screenshots/3.png" alt="Ukrainian Birds gameplay: Stork flying past incoming missiles towards a heart pickup." class="game-image small-inline-image" id="spotlight-img2">
+                </div>
+            </div>
+        </section>
+
+        <!-- Image Showcase 1: Controls -->
+        <section id="showcase-controls" class="content-section image-showcase alternate-bg">
+             <h2 id="controls-title">Intuitive Controls</h2>
+             <img src="ukrbirds_screenshots/5.png" alt="Gameplay Tutorial Screen: Explaining flight (tap to ascend), aiming (automatic), and shooting (tap screen) controls with visual aids." id="controls-img">
+            <p class="image-caption" id="controls-caption">Simple touch controls make flying and shooting intuitive. Maintain altitude with taps, aim automatically, and tap the screen to fire.</p>
+        </section>
+
+        <!-- Image Showcase 2: Shop -->
+        <section id="showcase-shop" class="content-section image-showcase">
+             <h2 id="shop-title">Upgrade Your Arsenal</h2>
+             <img src="ukrbirds_screenshots/6.png" alt="Game Shop Interface: Showing available weapons like grenades, RPGs, rifles with their coin prices and selection indicators." id="shop-img">
+             <p class="image-caption" id="shop-caption">Visit the shop between missions. Spend collected coins to unlock and upgrade powerful weapons for your feathered heroes.</p>
+        </section>
+
+        <!-- Image Showcase 3: Gameplay Action -->
+        <section id="showcase-gameplay" class="content-section image-showcase alternate-bg">
+             <h2 id="gameplay-title">Defend Against Invaders</h2>
+             <img src="ukrbirds_screenshots/1.png" alt="Ukrainian Birds gameplay: Stork flying low over green hills, engaging pig-like ground targets with gunfire." id="gameplay-img">
+             <p class="image-caption" id="gameplay-caption">Engage waves of ground and air enemies across diverse Ukrainian landscapes. Master flight and firepower to prevail!</p>
+        </section>
+
+        <!-- Image Showcase 4: Launch Options -->
+        <section id="showcase-launch" class="content-section image-showcase">
+             <h2 id="launch-title">Ready for Battle?</h2>
+             <img src="ukrbirds_screenshots/2.png" alt="Ukrainian Birds start screen showing 'В БІЙ' (To Battle) and 'МЕНЮ' (Menu) options presented by geese on a HIMARS-like truck, hinting at the game's theme." id="launch-img">
+            <p class="image-caption" id="launch-caption">Jump straight into the action with 'В БІЙ' (To Battle) or access options and upgrades via the 'МЕНЮ' (Menu).</p>
+        </section>
+
+
+         <!-- Studio Introduction Section -->
+         <section id="about-us" class="content-section studio-intro alternate-bg">
+            <h2 id="about-title">About Radiance Games Studio</h2>
+             <div class="section-content-centered">
+                <div>
+                    <p id="about-p1">Radiance Games Studio is a passionate team dedicated to creating engaging mobile games with impactful themes. We believe in the power of games to entertain and connect. "Українські пташки" is our debut title, crafted with heart and purpose.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Section -->
+    <footer id="contact" class="site-footer">
+         <div class="footer-content">
+            <div class="footer-contact">
+                <h3 id="contact-h3">Contact Us</h3>
+                <p id="contact-inquiries">General Inquiries & Support:<br><a href="mailto:radiance.studio.games@gmail.com">radiance.studio.games@gmail.com</a></p>
+                 <!-- Email address itself likely doesn't need translation -->
+            </div>
+            <div class="footer-social">
+                <h3 id="social-h3">Follow Us</h3>
+                <a href="https://www.instagram.com/ukrainian.birds.official/" target="_blank" rel="noopener noreferrer">Instagram</a>
+                 <!-- Social media names usually don't need translation -->
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p id="footer-copy">&copy; 2024 Radiance Games Studio. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
