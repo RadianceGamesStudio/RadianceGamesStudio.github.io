@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ukrainian Birds – Web App</title>
+
+    <!-- PWA manifest + theme color -->
+    <meta name="theme-color" content="#0057B7">
+    <link rel="manifest" href="ukrbirds.webmanifest">
+    <link rel="icon" href="favicon.ico">
+
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background: #000;
+            color: #fff;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        }
+        .wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        iframe {
+            border: none;
+            width: 100%;
+            height: 100%;
+        }
+        /* Fallback UI if iframe is blocked */
+        .fallback {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            padding: 1rem;
+            text-align: center;
+            background: #000;
+        }
+        .fallback button {
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            border: none;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            background: #0057B7;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+
+        <!-- ⭐ Here is your game embed -->
+        <iframe
+            id="game-frame"
+            src="https://itch.io/embed-upload/15558167?color=333333"
+            allowfullscreen
+        ></iframe>
+
+        <!-- Fallback if itch.io refuses iframe -->
+        <div id="fallback" class="fallback" style="display:none;">
+            <h1>Ukrainian Birds</h1>
+            <p>The game could not be embedded. Click below to open it directly:</p>
+            <button id="open-game-btn">Open game on itch.io</button>
+        </div>
+    </div>
+
+    <script>
+        const iframe = document.getElementById('game-frame');
+        const fallback = document.getElementById('fallback');
+        const button = document.getElementById('open-game-btn');
+        const gameUrl = "https://itch.io/embed-upload/15558167?color=333333";
+
+        let loaded = false;
+        iframe.addEventListener('load', () => {
+            loaded = true;
+        });
+
+        // After 5 seconds, if the iframe failed => show fallback
+        setTimeout(() => {
+            if (!loaded) {
+                fallback.style.display = 'flex';
+            }
+        }, 5000);
+
+        button.addEventListener('click', () => {
+            window.location.href = gameUrl;
+        });
+
+        // Register service worker for PWA installability
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js');
+            });
+        }
+    </script>
+</body>
+</html>
