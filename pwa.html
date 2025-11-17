@@ -10,6 +10,11 @@
     <link rel="manifest" href="ukrbirds.webmanifest">
     <link rel="icon" href="favicon.ico">
 
+    <!-- iOS PWA hints -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" href="icon-512.png">
+
     <style>
         html, body {
             margin: 0;
@@ -24,7 +29,7 @@
         }
         .loading {
             text-align: center;
-            opacity: 0.8;
+            opacity: 0.85;
         }
         .loading h1 {
             font-size: 1.3rem;
@@ -43,32 +48,47 @@
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
+        .hint {
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
     </style>
 
     <script>
-        /* ------------------------------------------
-           ⭐ ALWAYS REDIRECT TO REAL GAME ON ITCH.IO
-           ------------------------------------------ */
-
+        const ITCH_PAGE_URL   = "https://radiance-games-studio.itch.io/ukrbirds";
         const DIRECT_GAME_URL = "https://html-classic.itch.zone/html/15567055/index.html";
 
-        // Fully replace the current document with the game
-        window.location.replace(DIRECT_GAME_URL);
+        // As early as possible: ping itch page (for stats) then redirect to classic HTML
+        (function () {
+            try {
+                // This triggers a GET to the itch game page.
+                // Most analytics systems count that as a view.
+                const img = new Image();
+                img.referrerPolicy = "no-referrer-when-downgrade"; // default, but explicit
+                img.src = ITCH_PAGE_URL;
+            } catch (e) {
+                // If something fails, we just ignore and still redirect.
+            }
+
+            // Give the request a tiny bit of time to fire, then redirect.
+            // 300–500 ms is usually enough for the HTTP request to be sent.
+            setTimeout(() => {
+                window.location.replace(DIRECT_GAME_URL);
+            }, 400);
+        })();
     </script>
 </head>
-
 <body>
-    <!-- Small loading fallback just in case redirect is slow -->
+    <!-- Simple loading fallback while redirect happens -->
     <div class="loading">
         <h1>Launching Ukrainian Birds…</h1>
         <div class="spinner"></div>
-        <p style="margin-top:0.5rem; font-size:0.9rem; opacity:0.7;">
-            Loading game from itch.io
-        </p>
+        <div class="hint">Opening game…</div>
     </div>
 
     <script>
-        // PWA service worker registration (for installability only)
+        // Minimal service worker registration so the page is installable as a PWA
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('/sw.js').catch(() => {});
         }
