@@ -18,88 +18,59 @@
             background: #000;
             color: #fff;
             font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-        }
-        .wrapper {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-        }
-        iframe {
-            border: none;
-            width: 100%;
-            height: 100%;
-        }
-        /* Fallback UI if iframe is blocked */
-        .fallback {
-            position: absolute;
-            inset: 0;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 1rem;
-            padding: 1rem;
-            text-align: center;
-            background: #000;
         }
-        .fallback button {
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.5rem;
-            border: none;
-            font-size: 1rem;
+        .loading {
+            text-align: center;
+            opacity: 0.8;
+        }
+        .loading h1 {
+            font-size: 1.3rem;
             font-weight: 600;
-            cursor: pointer;
-            background: #0057B7;
-            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #333;
+            border-top-color: #FFD700;
+            border-radius: 50%;
+            animation: spin 0.9s linear infinite;
+            margin: 0 auto;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
     </style>
+
+    <script>
+        /* ------------------------------------------
+           ⭐ ALWAYS REDIRECT TO REAL GAME ON ITCH.IO
+           ------------------------------------------ */
+
+        const DIRECT_GAME_URL = "https://html-classic.itch.zone/html/15567055/index.html";
+
+        // Fully replace the current document with the game
+        window.location.replace(DIRECT_GAME_URL);
+    </script>
 </head>
+
 <body>
-    <div class="wrapper">
-
-        <!-- ⭐ Here is your game embed -->
-        <iframe
-            id="game-frame"
-            src="https://itch.io/embed-upload/15567055?color=333333"
-            allowfullscreen
-        ></iframe>
-
-        <!-- Fallback if itch.io refuses iframe -->
-        <div id="fallback" class="fallback" style="display:none;">
-            <h1>Ukrainian Birds</h1>
-            <p>The game could not be embedded. Click below to open it directly:</p>
-            <button id="open-game-btn">Open game on itch.io</button>
-        </div>
+    <!-- Small loading fallback just in case redirect is slow -->
+    <div class="loading">
+        <h1>Launching Ukrainian Birds…</h1>
+        <div class="spinner"></div>
+        <p style="margin-top:0.5rem; font-size:0.9rem; opacity:0.7;">
+            Loading game from itch.io
+        </p>
     </div>
 
     <script>
-        const iframe = document.getElementById('game-frame');
-        const fallback = document.getElementById('fallback');
-        const button = document.getElementById('open-game-btn');
-        const gameUrl = "https://itch.io/embed-upload/15567055?color=333333";
-
-        let loaded = false;
-        iframe.addEventListener('load', () => {
-            loaded = true;
-        });
-
-        // After 5 seconds, if the iframe failed => show fallback
-        setTimeout(() => {
-            if (!loaded) {
-                fallback.style.display = 'flex';
-            }
-        }, 5000);
-
-        button.addEventListener('click', () => {
-            window.location.href = gameUrl;
-        });
-
-        // Register service worker for PWA installability
+        // PWA service worker registration (for installability only)
         if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js');
-            });
+            navigator.serviceWorker.register('/sw.js').catch(() => {});
         }
     </script>
 </body>
