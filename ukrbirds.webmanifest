@@ -1,7 +1,7 @@
 {
   "name": "Ukrainian Birds",
   "short_name": "UkrBirds",
-  "start_url": "pwa.html",
+  "start_url": "/pwa.html",
   "display": "standalone",
   "background_color": "#0D1117",
   "theme_color": "#0057B7",
