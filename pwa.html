@@ -3,334 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ukrainian Birds – Web App</title>
-
-    <!-- PWA basics -->
-    <meta name="theme-color" content="#0057B7">
-    <link rel="manifest" href="ukrbirds.webmanifest">
-    // <link rel="icon" href="favicon.ico">
-
-    <!-- iOS PWA hints -->
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <link rel="apple-touch-icon" href="icon-512.png">
+    <title>Launching Ukrainian Birds…</title>
 
     <style>
-        :root {
-            --blue: #0057B7;
-            --yellow: #FFD700;
-            --bg: #020617;
-            --card-bg: #020617;
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
         html, body {
             margin: 0;
             padding: 0;
             height: 100%;
-            background: radial-gradient(circle at top, #1e293b 0, #020617 60%);
-            color: #e5e7eb;
+            background: #000;
+            color: #fff;
             font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-        }
-
-        body {
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 1.5rem;
         }
-
-        .shell {
-            width: 100%;
-            max-width: 480px;
-        }
-
-        .card {
-            background: rgba(2, 6, 23, 0.92);
-            border-radius: 1rem;
-            border: 1px solid rgba(148, 163, 184, 0.4);
-            padding: 1.75rem 1.5rem 1.5rem;
-            box-shadow: 0 20px 50px rgba(15, 23, 42, 0.9);
-            backdrop-filter: blur(10px);
-        }
-
-        .title-row {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            margin-bottom: 0.75rem;
-        }
-
-        .logo-circle {
-            width: 40px;
-            height: 40px;
-            border-radius: 999px;
-            background: linear-gradient(135deg, var(--blue), var(--yellow));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 800;
-            color: #020617;
-            font-size: 1.1rem;
-        }
-
-        h1 {
-            font-size: 1.25rem;
-            margin: 0;
-        }
-
-        .subtitle {
-            font-size: 0.9rem;
-            color: #9ca3af;
-            margin-bottom: 1.25rem;
-        }
-
-        .button-primary {
-            width: 100%;
-            padding: 0.85rem 1rem;
-            border-radius: 0.75rem;
-            border: none;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            background: linear-gradient(135deg, var(--blue), #0ea5e9);
-            color: #f9fafb;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.4rem;
-            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.5);
-        }
-
-        .button-primary span.icon {
-            font-size: 1.1rem;
-        }
-
-        .button-primary:hover {
-            filter: brightness(1.05);
-            transform: translateY(1px);
-        }
-
-        .button-primary:active {
-            transform: translateY(2px);
-            box-shadow: 0 5px 15px rgba(30, 64, 175, 0.6);
-        }
-
-        .section {
-            margin-top: 1.5rem;
-            padding-top: 1.25rem;
-            border-top: 1px solid rgba(148, 163, 184, 0.35);
-        }
-
-        .section h2 {
-            font-size: 0.95rem;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: #9ca3af;
-            margin: 0 0 0.6rem;
-        }
-
-        .install-hint {
-            font-size: 0.88rem;
-            color: #e5e7eb;
-        }
-
-        .install-hint strong {
-            color: var(--yellow);
-        }
-
-        .install-note {
-            margin-top: 0.4rem;
-            font-size: 0.8rem;
-            color: #9ca3af;
-        }
-
-        .badge-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.35rem;
-            margin-top: 0.6rem;
-            font-size: 0.8rem;
-            color: #9ca3af;
-        }
-
-        .badge {
-            border-radius: 999px;
-            border: 1px solid rgba(148, 163, 184, 0.6);
-            padding: 0.15rem 0.6rem;
-        }
-
-        .install-button {
-            display: none; /* shown only when beforeinstallprompt fires */
-            margin-top: 0.85rem;
-            width: 100%;
-            padding: 0.7rem 1rem;
-            border-radius: 0.65rem;
-            border: 1px solid rgba(56, 189, 248, 0.7);
-            background: rgba(15, 23, 42, 0.9);
-            color: #e0f2fe;
-            font-size: 0.9rem;
-            font-weight: 500;
-            cursor: pointer;
-        }
-
-        .install-button:hover {
-            background: rgba(8, 47, 73, 0.9);
-        }
-
-        .footer {
-            margin-top: 0.9rem;
-            font-size: 0.75rem;
-            color: #6b7280;
+        .loading {
             text-align: center;
-        }
-
-        .footer span {
             opacity: 0.9;
         }
-
-        .footer-standalone-note {
-            display: none;
-            margin-top: 0.4rem;
-            font-size: 0.77rem;
-            color: #9ca3af;
+        .loading h1 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
         }
-
-        @media (max-width: 480px) {
-            .card {
-                padding: 1.5rem 1.25rem 1.25rem;
-            }
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #333;
+            border-top-color: #FFD700;
+            border-radius: 50%;
+            animation: spin 0.9s linear infinite;
+            margin: 0 auto;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .hint {
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+            opacity: 0.7;
         }
     </style>
 
     <script>
-        // -----------------------------
-        // CONFIG: direct HTML build URL
-        // -----------------------------
-        const DIRECT_GAME_URL = "https://html-classic.itch.zone/html/15567055/index.html";
+        // Direct link to the classic itch HTML build
+        const DIRECT_GAME_URL = "https://html-classic.itch.zone/html/15569951/index.html";
 
-        function isStandaloneMode() {
-            // Android/desktop PWA
-            const standaloneDisplay = window.matchMedia &&
-                window.matchMedia("(display-mode: standalone)").matches;
-
-            // iOS Safari
-            const standaloneIOS = window.navigator.standalone === true;
-
-            return standaloneDisplay || standaloneIOS;
-        }
-
-        // If already running as an installed PWA, just launch the game
-        if (isStandaloneMode()) {
-            window.location.replace(DIRECT_GAME_URL);
-        }
+        // Redirect as soon as possible
+        window.location.replace(DIRECT_GAME_URL);
     </script>
 </head>
 <body>
-    <div class="shell">
-        <div class="card">
-            <div class="title-row">
-                <div class="logo-circle">UB</div>
-                <div>
-                    <h1>Ukrainian Birds – Web App</h1>
-                    <div class="subtitle">Play in the browser or install it like a native app.</div>
-                </div>
-            </div>
-
-            <!-- Play button -->
-            <button id="play-button" class="button-primary" type="button">
-                <span class="icon">▶</span>
-                <span>Play in the browser</span>
-            </button>
-
-            <!-- Install section -->
-            <div class="section" id="install-section">
-                <h2>Install on your device</h2>
-
-                <div id="generic-install" class="install-hint">
-                    <strong>On Android / desktop (Chrome, Edge):</strong><br>
-                    Open this page in your browser, then use the menu 
-                    <span style="opacity:0.8;">(⋮ or ⋯)</span> and choose 
-                    <em>“Install app”</em> or <em>“Install Ukrainian Birds”</em>.
-                    <div class="badge-row">
-                        <span class="badge">Chrome</span>
-                        <span class="badge">Edge</span>
-                        <span class="badge">Brave</span>
-                    </div>
-
-                    <div style="margin-top:0.8rem;">
-                        <strong>On iPhone / iPad (Safari):</strong><br>
-                        Tap the <span style="font-size:1.05rem;">⤴︎</span> share button, then 
-                        <em>“Add to Home Screen”</em>.
-                        <div class="badge-row">
-                            <span class="badge">Safari only</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Button shown when beforeinstallprompt is fired (Android/desktop) -->
-                <button id="install-button" class="install-button" type="button">
-                    Install “Ukrainian Birds” on this device
-                </button>
-
-                <div class="install-note">
-                    Once installed, launching the app from your home screen will jump directly into the game.
-                </div>
-            </div>
-
-            <div class="footer">
-                <span>Tip: install it once, then play even more like a native game.</span>
-                <div id="footer-standalone-note" class="footer-standalone-note">
-                    When opened from the home screen, the app launches the full game automatically.
-                </div>
-            </div>
-        </div>
+    <div class="loading">
+        <h1>Launching Ukrainian Birds…</h1>
+        <div class="spinner"></div>
+        <div class="hint">Opening game (classic HTML build)…</div>
     </div>
-
-    <script>
-        const playBtn = document.getElementById("play-button");
-        const installBtn = document.getElementById("install-button");
-        const installSection = document.getElementById("install-section");
-        const footerStandaloneNote = document.getElementById("footer-standalone-note");
-
-        // Show note about behaviour in standalone mode
-        footerStandaloneNote.style.display = "block";
-
-        // Play button => open direct game URL in same tab
-        playBtn.addEventListener("click", () => {
-            window.location.href = DIRECT_GAME_URL;
-        });
-
-        // beforeinstallprompt (Chrome/Edge etc.)
-        let deferredPrompt = null;
-
-        window.addEventListener("beforeinstallprompt", (e) => {
-            // Prevent the mini-infobar
-            e.preventDefault();
-            deferredPrompt = e;
-            // Show our custom install button
-            installBtn.style.display = "block";
-        });
-
-        installBtn.addEventListener("click", async () => {
-            if (!deferredPrompt) return;
-            deferredPrompt.prompt();
-            try {
-                await deferredPrompt.userChoice;
-            } catch (_) {
-                // ignore
-            }
-            deferredPrompt = null;
-            installBtn.style.display = "none";
-        });
-
-        // Register service worker (for installability; SW can be simple)
-        if ("serviceWorker" in navigator) {
-            navigator.serviceWorker.register("/sw.js").catch(() => {});
-        }
-    </script>
 </body>
 </html>
